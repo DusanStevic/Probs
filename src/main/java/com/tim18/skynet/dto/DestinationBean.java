@@ -2,18 +2,18 @@ package com.tim18.skynet.dto;
 
 import javax.persistence.Column;
 
-public class DestinationDTO {
+public class DestinationBean {
 	
 	
 	private String name;
 	private String description;
 	private String coordinates;
 	
-	public DestinationDTO() {
+	public DestinationBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DestinationDTO(String name, String description, String coordinates) {
+	public DestinationBean(String name, String description, String coordinates) {
 		super();
 		this.name = name;
 		this.description = description;

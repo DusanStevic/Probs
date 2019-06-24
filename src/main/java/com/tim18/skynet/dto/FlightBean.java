@@ -6,7 +6,7 @@ import com.tim18.skynet.model.Flight;
 
 
 
-public class FlightDTO {
+public class FlightBean {
 	
 	
 	private String startDestination;
@@ -35,12 +35,12 @@ public class FlightDTO {
 	private double rate;
 	
 	
-	public FlightDTO() {
+	public FlightBean() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public FlightDTO(String startDestination, String endDestination, Date startDate, Date endDate, int flightDuration,
+	public FlightBean(String startDestination, String endDestination, Date startDate, Date endDate, int flightDuration,
 			int flightLength, double businessPrice, double economicPrice, double firstClassPrice, double minBusiness,
 			double minEconomic, double minFirstClass, double maxBusiness, double maxEconomic, double maxFirstClass,
 			String flightCompany, String economicCapacity, String buisinesssCapacity, String firstClassCapacity, Long companyId) {
@@ -67,7 +67,7 @@ public class FlightDTO {
 		this.companyId = companyId;
 	}
 	
-	public FlightDTO(Flight flight, String companyName, String startDate, String endDate) {
+	public FlightBean(Flight flight, String companyName, String startDate, String endDate) {
 		this.startDestination = flight.getStartDestination().getName();
 		this.endDestination = flight.getEndDestination().getName();;
 		this.startDate = flight.getStartDate();

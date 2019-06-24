@@ -27,13 +27,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tim18.skynet.dto.AirlineSearchDTO;
-import com.tim18.skynet.dto.DestinationDTO;
+import com.tim18.skynet.dto.DestinationBean;
 import com.tim18.skynet.dto.FastSeatReservationDTO;
 import com.tim18.skynet.dto.FastSeatReservationDetailsDTO;
-import com.tim18.skynet.dto.FlightDTO;
+import com.tim18.skynet.dto.FlightBean;
 import com.tim18.skynet.dto.ImageDTO;
 import com.tim18.skynet.dto.RoomSearchDTO;
-import com.tim18.skynet.dto.SeatsDTO;
+import com.tim18.skynet.dto.SeatsBean;
 import com.tim18.skynet.model.Airline;
 import com.tim18.skynet.model.AirlineAdmin;
 import com.tim18.skynet.model.Destination;
@@ -91,7 +91,7 @@ public class AirlineController {
 	//Method for adding new flight
 		@RequestMapping(value = "/api/addFlight", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 		@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
-		public ResponseEntity<?> addFlight(@RequestBody FlightDTO newFlightInfo) throws Exception {
+		public ResponseEntity<?> addFlight(@RequestBody FlightBean newFlightInfo) throws Exception {
 
 			System.out.println("Uleteo sam u dodavanje letova.");
 			AirlineAdmin airlineAdmin = (AirlineAdmin) this.userInfoService
@@ -188,7 +188,7 @@ public class AirlineController {
 		}
 		
 		@RequestMapping(value = "/api/getFlight/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<FlightDTO> getFlight(@PathVariable("id")Long id){
+		public ResponseEntity<FlightBean> getFlight(@PathVariable("id")Long id){
 			System.out.println("ULETEO SAM U PRIKAZ JEDNOG  LETA");
 			
 			
@@ -196,7 +196,7 @@ public class AirlineController {
 			if (f == null) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
-			FlightDTO fb = new FlightDTO(f, f.getAirline().getName(), sdf2.format(f.getStartDate()),
+			FlightBean fb = new FlightBean(f, f.getAirline().getName(), sdf2.format(f.getStartDate()),
 					sdf2.format(f.getEndDate()));
 			System.out.println("ONO STO JE PRONADJENO U BAZI"+f.toString());
 			return new ResponseEntity<>(fb, HttpStatus.OK);
@@ -241,7 +241,7 @@ public class AirlineController {
 		
 		
 		@RequestMapping(value = "/api/getSeatsOnFlight/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<SeatsDTO> getSeatsOnFlight(@PathVariable("id") Long id){
+		public ResponseEntity<SeatsBean> getSeatsOnFlight(@PathVariable("id") Long id){
 			System.out.println("ULETEO SAM U RENDEROVANJE SEDISTA");
 			Flight flight = flightService.findOne(id);
 			List<Seat> seats = new ArrayList<Seat>();
@@ -337,7 +337,7 @@ public class AirlineController {
 			System.out.println("BROJ KOLONA U FIRST KLASI:"+firstClassCapacity_columns);
 			System.out.println("CENA U FIRST KLASI:"+firstClassPrice);
 			
-			SeatsDTO sb = new SeatsDTO(seats, economicCapacity_rows, economicCapacity_columns, buisinesssCapacity_rows, buisinesssCapacity_columns, firstClassCapacity_rows, firstClassCapacity_columns, businessPrice, economicPrice, firstClassPrice);
+			SeatsBean sb = new SeatsBean(seats, economicCapacity_rows, economicCapacity_columns, buisinesssCapacity_rows, buisinesssCapacity_columns, firstClassCapacity_rows, firstClassCapacity_columns, businessPrice, economicPrice, firstClassPrice);
 			return new ResponseEntity<>(sb, HttpStatus.OK);
 		}
 	
@@ -348,12 +348,12 @@ public class AirlineController {
 		
 		
 		@RequestMapping(value = "/api/flightSearch", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<ArrayList<FlightDTO>> searchFlights(@RequestBody FlightDTO search) throws Exception {
+		public ResponseEntity<ArrayList<FlightBean>> searchFlights(@RequestBody FlightBean search) throws Exception {
 			System.out.println("UPAO SAM U PRETRAGU LETOVA");
 			System.out.println("ONO STO JE STIGLO SA FRONTA" + search.toString());
 			ArrayList<Flight> flights = new ArrayList<>();
 			flights = (ArrayList<Flight>) flightService.findAll();
-			ArrayList<FlightDTO> foundFlights = new ArrayList<>();
+			ArrayList<FlightBean> foundFlights = new ArrayList<>();
 			DateTimeComparator dateTimeComparator = DateTimeComparator.getDateOnlyInstance();
 			String companyName = "";
 			for (Flight f : flights) {
@@ -379,7 +379,7 @@ public class AirlineController {
 								|| dateTimeComparator.compare(f.getEndDate(), search.getEndDate()) == 0)) {
 
 					foundFlights
-							.add(new FlightDTO(f, companyName, sdf2.format(f.getStartDate()), sdf2.format(f.getEndDate())));
+							.add(new FlightBean(f, companyName, sdf2.format(f.getStartDate()), sdf2.format(f.getEndDate())));
 				}
 			}
 			System.out.println("\tREZ = " + foundFlights.size());
@@ -398,11 +398,10 @@ public class AirlineController {
 		}
 	
 	
-	@RequestMapping(value = "/api/addDestination", method = RequestMethod.POST, 
-			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/api/addDestination", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
 	// Method for adding new destination on which flight company operates
-	public ResponseEntity<Destination>addDestination(@RequestBody DestinationDTO destInfo) {
+	public ResponseEntity<Destination>addDestination(@RequestBody DestinationBean destInfo) {
 		System.out.println("Uleteo sam u dodavanje destinacije.");
 		AirlineAdmin airlineAdmin = (AirlineAdmin) this.userInfoService
 				.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -610,10 +609,9 @@ public class AirlineController {
 	}
 	
 	/*DODAVANJE BRZOG SEDISTA*/
-	@RequestMapping(value = "/api/addFastSeatReservation", method = RequestMethod.POST,
-			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/api/addFastSeatReservation", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
-	public ResponseEntity<ArrayList<FastSeatReservation>>  addFastSeatReservation(@RequestBody FastSeatReservationDTO fastSeatReservationDTO) {
+	public ResponseEntity<List<FastSeatReservation>>  addFastSeatReservation(@RequestBody FastSeatReservationDTO fastSeatReservationDTO) {
 		System.out.println("ULETEO SAM U DODAVANJE  BRZE");
 		
 		AirlineAdmin loggedAdmin = (AirlineAdmin) this.userInfoService
@@ -623,7 +621,7 @@ public class AirlineController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		ArrayList<FastSeatReservation> fastSeatReservations = new ArrayList<FastSeatReservation>();
+		List<FastSeatReservation> fastSeatReservations = new ArrayList<FastSeatReservation>();
 		
 		if(!fastSeatReservationDTO.getSeats().isEmpty()) {
 			
@@ -660,7 +658,7 @@ public class AirlineController {
 		
 		
 		
-		return new ResponseEntity<>(fastSeatReservations, HttpStatus.CREATED);
+		return new ResponseEntity<>(fastSeatReservations, HttpStatus.OK);
 	}
 	
 	

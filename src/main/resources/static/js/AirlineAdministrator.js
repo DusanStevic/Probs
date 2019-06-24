@@ -277,7 +277,7 @@ $(document).on('click', '#viewUserProfile_button', function(e){
 	e.preventDefault();
 	$.ajax({
 		type : 'GET',
-		url : "/api/viewUserProfile",
+		url : "http://localhost:8080/api/viewUserProfile",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType: 'json',
 		success : viewUserProfile,		
@@ -312,7 +312,7 @@ $(document).on('click', '#izmenaProfila_btn', function(e){
 	e.preventDefault();
 	$.ajax({
 		type : 'GET',
-		url : "/api/viewUserProfile",
+		url : "http://localhost:8080/api/viewUserProfile",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType: 'json',
 		success : prikazPodatakaZaIzmenu,
@@ -359,7 +359,7 @@ $(document).on('submit', '.posaljiIzmeneZaProfil', function(e){
 	}	
 	$.ajax({
 		type : 'PUT',
-		url : '/api/updateUserProfile',
+		url : 'http://localhost:8080/api/updateUserProfile',
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		contentType: 'application/json',
 		data: formToJSON_profilIZ(password,name,surname,  email),
@@ -450,23 +450,27 @@ $(document).on('submit', '#dodajDestForma', function(e){
 	}
 	$.ajax({
 		type : 'POST',
-		url : "/api/addDestination",
+		url : "http://localhost:8080/api/addDestination",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		//url : '../Projekat/rest/admini/dodajDestinaciju',
 		contentType: 'application/json',
 		dataType : 'json',
 		data: formToJSON_dest(name, coordinates,  description),
 		success : function(data){
-			$.bootstrapGrowl("Destination has been successfully created!", {
-				  ele: 'body', // which element to append to
-				  type: 'success', // (null, 'info', 'danger', 'success')
-				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-				  align: 'right', // ('left', 'right', or 'center')
-				  width: 'auto', // (integer, or 'auto')
-				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
-				  allow_dismiss: false, // If false then will display a cross to close the popup.
-				  stackup_spacing: 10 // spacing between consecutively stacked growls.
-				});
+			alert("Successfully added destination.");
+			/*if (data != null){
+				if (file == undefined){
+					$('.main').empty();
+		        	$('.main').append('<p>Uspesno ste dodali novu destinaciju.</p>');
+				}
+				else{
+					uploadImageDest(file);
+				}
+				
+			}
+			else{
+				alert("destinacija sa tim nazivom vec postoji!");
+			}*/
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			alert("ULETEO SAM U AJAX ERROR: " + errorThrown);
@@ -487,7 +491,7 @@ function formToJSON_dest(name, coordinates,  description){
 function getDestinations(){
 	$.ajax({
 		type : 'GET',
-		url : "/api/getDestinations",
+		url : "http://localhost:8080/api/getDestinations",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType: 'json',
 		success : prikazDestinacija,
@@ -579,7 +583,7 @@ $(document).on('click', '.izmenaDestinacije', function(e){
 	e.preventDefault();
 	var id = $(this).attr("name");
 	//var adresa = '../Projekat/rest/admini/pronadjiDestinaciju/' + nazivDest;
-	var adresa = "/api/getDestination/" + id;
+	var adresa = "http://localhost:8080/api/getDestination/" + id;
 	
 	$.ajax({
 		type : 'GET',
@@ -628,7 +632,7 @@ $(document).on('submit', '.posaljiIzmeneZaDestinaciju', function(e){
 	$.ajax({
 		type : 'PUT',
 		//url : '../Projekat/rest/admini/izmeniDestinaciju',
-		url : "/api/updateDestination",
+		url : "http://localhost:8080/api/updateDestination",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		contentType: 'application/json',
 		dataType : 'json',
@@ -670,7 +674,7 @@ $(document).on('click', '#dodajLet_btn', function(e){
 	e.preventDefault();
 	$.ajax({
 		type : 'GET',
-		url : "/api/getDestinations",
+		url : "http://localhost:8080/api/getDestinations",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType: 'json',
 		success : prikazFormeZaNoviLet,
@@ -793,7 +797,7 @@ $(document).on('submit', '.dodajNoviLet', function(e){
 	
 	$.ajax({
 		type : 'POST',
-		url : "/api/addFlight",
+		url : "http://localhost:8080/api/addFlight",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		contentType: 'application/json',
 		dataType : 'text',
@@ -861,7 +865,7 @@ function airlineAdminEditToJSON(username, password1, firstName, lastName,
 function getFlights(){
 	$.ajax({
 		type : 'GET',
-		url : "/api/getFlights",
+		url : "http://localhost:8080/api/getFlights",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType: 'json',
 		success : prikazFlights,
@@ -908,7 +912,7 @@ function prikazFlights(data){
 function getFastSeatReservations(){
 	$.ajax({
 		type : 'GET',
-		url : "/api/getFastSeatReservations",
+		url : "http://localhost:8080/api/getFastSeatReservations",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType: 'json',
 		success : prikazFastSeatReservations,
@@ -955,7 +959,7 @@ function prikazFastSeatReservations(data){
 $(document).on('click', '.removeFastSeatReservation', function(e){	
 	e.preventDefault();
 	var id = $(this).attr("name");
-	var adresa = "/api/removeFastSeatReservation/" + id;
+	var adresa = "http://localhost:8080/api/removeFastSeatReservation/" + id;
 	
 	$.ajax({
 		type : 'DELETE',
@@ -985,7 +989,7 @@ $(document).on('click', '.removeFastSeatReservation', function(e){
 
 
 //GENERISANJE BRZE REZERVACIJE SEDISTA OD STRANE AIRLINEADMIN-A
-$(document).on('click', '#dodajFast_btn', function(e){
+/*$(document).on('click', '#dodajFast_btn', function(e){
 	console.log("Kliknuo");
 	e.preventDefault();
 	alert("USAO JE U PRETRAGU: ");
@@ -1063,7 +1067,7 @@ $(document).on('submit', '#pretragaForma', function(e){
 	
 	$.ajax({
 		type : 'POST',
-		url : "/api/flightSearch",
+		url : "http://localhost:8080/api/flightSearch",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		contentType: 'application/json',
 		dataType: 'json',
@@ -1075,8 +1079,8 @@ $(document).on('submit', '#pretragaForma', function(e){
 	});	
 })
 
-
-function prikazLetova(data){
+*/
+/*function prikazLetova(data){
 	if (data == null){
 		$('#main').empty();
 		$('#main').append("Nema pronadjenih letova.");
@@ -1120,7 +1124,7 @@ function prikazLetova(data){
 		tr.append('<td>'+ let_.startDate_str + '</td>');
 		tr.append('<td>'+ let_.endDate_str + '</td>');
 		tr.append('<td>'+ let_.klasaAviona + '</td>');
-		var forma = $('<form class = "addFastSeatReservation"></form>')
+		var forma = $('<form id = "addFastSeatReservation"></form>')
 		forma.append('<input type = "hidden" value="' + let_.id +'">');
 		forma.append('<input type = "submit" value = "Add fast seat reservation">')
 		var td = $('<td></td>');
@@ -1151,6 +1155,7 @@ function formToJSON_pretraga(flightCompany,startDestination,endDestination,start
 		
 	});
 }
+*/
 
 
 
@@ -1160,24 +1165,10 @@ function formToJSON_pretraga(flightCompany,startDestination,endDestination,start
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-$(document).on('submit', '.addFastSeatReservation', function(e){	
+$(document).on('click', '.addFastSeatReservation', function(e){	
 	e.preventDefault();
-	//var brLeta = $(this).attr("name");
-	var brLeta = $(this).find('input[type=hidden]').val();
-	var adresa = "/api/getFlight/" + brLeta;
+	var brLeta = $(this).attr("name");
+	var adresa = "http://localhost:8080/api/getFlight/" + brLeta;
 	
 	
 	
@@ -1240,7 +1231,7 @@ $(document).on('submit', '#sedista', function(e){
 	alert("OVO JE BROJ LETA KOJI HOCEMO DA REZERVISEMO: " + brLeta);
 	//var adresa = '../Projekat/rest/letovi/pronadjiLet/' + brLeta;
 	localStorage.setItem("flightID", brLeta);
-	var adresa = "/api/getSeatsOnFlight/" + brLeta;
+	var adresa = "http://localhost:8080/api/getSeatsOnFlight/" + brLeta;
 	
 	
 	
@@ -1279,9 +1270,8 @@ function prikazSedistaZaRezervaciju(data){
 				'<ul id="selected-seats"></ul>'+
 				
 				'Total: <b>$<span id="total">0</span></b>'+
-				'<button class="checkout-button"'+
-				'onclick="salji()">Checkout &raquo;</button>'+
-				/*'<button class="checkout-button">Checkout &raquo;</button>'+*/
+
+				'<button class="checkout-button">Checkout &raquo;</button>'+
 				'<button class=\'next-button\' onclick="$(\'#uzas\').click()">Next &raquo;</button>'+
 				'<br><br><br>'+
 				'<div id="legend"></div>'+
@@ -1450,8 +1440,7 @@ function recalculateTotal(sc) {
  return total;
 }
 
-function salji(){
-/*$(document).on('click','.checkout-button',function(e){*/
+$(document).on('click','.checkout-button',function(e){
 	var id = localStorage.getItem("flightID");
 	alert("OVO JE BROJ LETA KOJI HOCEMO DA SALJEMO NA SERVER IZ METODE POKUPI SEDISTA: " + id);
 	var id = localStorage.getItem("flightID");
@@ -1481,7 +1470,7 @@ function salji(){
 
 	$.ajax({
 		type:'POST',
-		url:"/api/addFastSeatReservation",
+		url:"http://localhost:8080/api/addFastSeatReservation",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		contentType:'application/json',
 		dataType:'json',
@@ -1500,13 +1489,12 @@ function salji(){
 			
 		}
 	});
-};
+});
 
 function seatReservationToJSON(flight_id, seats, discount){
 	return JSON.stringify({
-		"flight_id":flight_id,
 		"seats":seats,
-		
+		"flight_id":flight_id,
 		"discount":discount,
 	});
 }
@@ -1546,7 +1534,7 @@ function seatReservationToJSON(flight_id, seats, discount){
 
 	$.ajax({
 		type:'POST',
-		url:"https://skynet-deployment.herokuapp.com/api/addFastSeatReservation",
+		url:"http://localhost:8080/api/addFastSeatReservation",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		contentType:'application/json',
 		dataType:'json',

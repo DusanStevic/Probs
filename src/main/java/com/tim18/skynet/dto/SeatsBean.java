@@ -6,7 +6,7 @@ import com.tim18.skynet.model.Seat;
 
 
 
-public class SeatsDTO {
+public class SeatsBean {
 	
 	private List<Seat> seats;
 	private int economicCapacity_rows;
@@ -19,7 +19,7 @@ public class SeatsDTO {
 	private double economicPrice;
 	private double firstClassPrice;
 	
-	public SeatsDTO() {
+	public SeatsBean() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -31,7 +31,7 @@ public class SeatsDTO {
 
 	
 
-	public SeatsDTO(List<Seat> seats, int economicCapacity_rows, int economicCapacity_columns,
+	public SeatsBean(List<Seat> seats, int economicCapacity_rows, int economicCapacity_columns,
 			int buisinesssCapacity_rows, int buisinesssCapacity_columns, int firstClassCapacity_rows,
 			int firstClassCapacity_columns, double businessPrice, double economicPrice, double firstClassPrice) {
 		super();
