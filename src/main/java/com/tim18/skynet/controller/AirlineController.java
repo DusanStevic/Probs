@@ -466,6 +466,30 @@ public class AirlineController {
 		return new ResponseEntity<>(airline, HttpStatus.FOUND);
 	}
 	
+	
+	@RequestMapping(value = "/api/getKompanija", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
+	// Method for adding new destination on which flight company operates
+	public ResponseEntity<Airline>getKompanija() {
+		System.out.println("Uleteo sam u dodavanje destinacije.");
+		AirlineAdmin airlineAdmin = (AirlineAdmin) this.userInfoService
+				.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		Airline a = airlineAdmin.getAirline();
+		if (a == null) {
+			System.out.println("Flight admin doesnt't have flight company.");
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			
+		}
+		
+		return new ResponseEntity<>(a, HttpStatus.OK);
+		
+		
+	}
+	
+	
+	
+	
+	
 	/*
 	FUNKCIJA ZA PREGLED PROFILA SVIH KORISNIKA
 	@GetMapping(value = "/api/viewUserProfile", produces = MediaType.APPLICATION_JSON_VALUE)
