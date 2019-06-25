@@ -14,8 +14,23 @@ var lab=[];
 getAirline();*/
 
 function getAirline() {
-	var token = getJwtToken(TOKEN_KEY);
-	if (token) {
+	$.ajax({
+		type : 'GET',
+		url : "/api/getAirline",
+		headers : createAuthorizationTokenHeader(TOKEN_KEY),
+		dataType : "json",
+		success :displayAirline,
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.status);
+			alert(textStatus);
+			alert(errorThrown);
+		}
+	});
+	
+	
+	
+	//var token = getJwtToken(TOKEN_KEY);
+	/*if (token) {
 		$.ajax({
 			type : 'GET',
 			url : "/api/getAirline",
@@ -29,6 +44,17 @@ function getAirline() {
 			}
 		})
 	}
+	
+	$.ajax({
+		type : 'GET',
+		url : "/api/getDestinations",
+		headers : createAuthorizationTokenHeader(TOKEN_KEY),
+		dataType: 'json',
+		success : prikazDestinacija,
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("AJAX ERROR: " + errorThrown);
+		}
+	});	*/
 }
 
 function displayAirline(data){

@@ -88,7 +88,7 @@ public class AirlineController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			
 		} 
-		return new ResponseEntity<>(airline, HttpStatus.OK);
+		return new ResponseEntity<>(airline, HttpStatus.FOUND);
 	}
 	
 	
