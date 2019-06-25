@@ -18,7 +18,7 @@ function getAirline() {
 	if (token) {
 		$.ajax({
 			type : 'GET',
-			url : " https://secret-ravine-36346.herokuapp.com/api/getAirline",
+			url : "/api/getAirline",
 			headers : createAuthorizationTokenHeader(TOKEN_KEY),
 			dataType : "json",
 			success : function(data) {

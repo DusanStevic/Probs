@@ -81,18 +81,17 @@ public class AirlineController {
 	public ResponseEntity<Airline> getAirline() {
 		AirlineAdmin user = (AirlineAdmin) this.userInfoService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		Airline airline = user.getAirline();
-		if (airline != null) {
-			return new ResponseEntity<>(airline, HttpStatus.OK);
-		} else {
+		if (airline == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+			
+		} 
+		return new ResponseEntity<>(airline, HttpStatus.OK);
 	}
 	
 	
 	
-/*	@RequestMapping(value = "/api/addDestination", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@RequestMapping(value = "/api/addDestination", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
-	// Method for adding new destination on which flight company operates
 	public ResponseEntity<Destination>addDestination(@RequestBody DestinationBean destInfo) {
 		System.out.println("Uleteo sam u dodavanje destinacije.");
 		AirlineAdmin airlineAdmin = (AirlineAdmin) this.userInfoService
@@ -113,8 +112,8 @@ public class AirlineController {
 		return new ResponseEntity<>(newDestination, HttpStatus.CREATED);
 		
 		
-	}*/
-	
+	}
+	*/
 	
 	
 	
