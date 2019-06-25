@@ -454,9 +454,9 @@ public class AirlineController {
 		
 	}
 	
-	@RequestMapping(value = "/api/getNESTO",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/api/getNESTO",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
-	public ResponseEntity<?> getAirline() {
+	public ResponseEntity<Airline> getAirline() {
 		AirlineAdmin user = (AirlineAdmin) this.userInfoService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		Airline airline = user.getAirline();
 		if (airline == null) {
