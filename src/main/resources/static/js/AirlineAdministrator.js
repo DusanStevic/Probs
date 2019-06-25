@@ -16,7 +16,7 @@ getAirline();*/
 function getAirline() {
 	$.ajax({
 		type : 'GET',
-		url : "/api/getAirline",
+		url : "/api/getNESTO",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType : "json",
 		success :displayAirline,
