@@ -338,7 +338,7 @@ $(document).on('click', '#logout_button', function(e) {
 })
 
 
-/*PRIKAZ PROFILA AIRLINE ADMINISTRATORA*/
+/*PRIKAZ PROFILA AIRLINE ADMINISTRATORA
 $(document).on('click', '#viewUserProfile_button', function(e){
 	e.preventDefault();
 	$.ajax({
@@ -368,7 +368,46 @@ function viewUserProfile(user){
 		tabela1.append('<tr><td> Email:</td><td>' +  user.email +'</td></tr>');
 		tabela1.append('<tr><td colspan="2"><input type="button" id="izmenaProfila_btn" value="Edit Profile"/></td></tr>');
 		$('#userProfile').append(tabela1);
+}*/
+
+
+/*PRIKAZ PROFILA REGISTERED USERA*/
+$(document).on('click', '#viewUserProfile_button', function(e){
+	e.preventDefault();
+	$.ajax({
+		type : 'GET',
+		url : "/api/viewUserProfile",
+		headers : createAuthorizationTokenHeader(TOKEN_KEY),
+		dataType: 'json',
+		success : viewUserProfile,		
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("AJAX ERROR: " + errorThrown);
+		}
+	});	
+})
+
+
+function viewUserProfile(user){
+	
+	
+		$('#main').empty();
+		//$('#main').append('<img src = "'+ korisnik.slika + '" width= "409px" height= "318">');
+		$('#main').append('<h1>' +"View user profile"+ '</h1>' );
+		var tabela1 = $('<table></table>');
+		tabela1.append('<tr><td> Name:</td><td>' +  user.name +'</td></tr>');
+		tabela1.append('<tr><td> Surname:</td><td>' +  user.surname +'</td></tr>');
+		tabela1.append('<tr><td> Username:</td><td>' +  user.username +'</td></tr>');
+		tabela1.append('<tr><td> Email:</td><td>' +  user.email +'</td></tr>');
+		
+		$('#main').append(tabela1);
+	
 }
+
+
+
+
+
+
 
 /*UPDATE PROFILA AIRLINE ADMINISTRATORA*/
 $(document).on('click', '#izmenaProfila_btn', function(e){
