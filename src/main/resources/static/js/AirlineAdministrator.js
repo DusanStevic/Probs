@@ -10,8 +10,8 @@ var lab=[];
 })
 */
 
-checkFirstTime();
-getAirline();
+/*checkFirstTime();
+getAirline();*/
 
 function getAirline() {
 	var token = getJwtToken(TOKEN_KEY);
