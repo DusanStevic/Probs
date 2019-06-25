@@ -13,6 +13,24 @@ var lab=[];
 /*checkFirstTime();
 getAirline();*/
 
+$(document).on('click', '#airlineProfile', function(e){
+	e.preventDefault();
+	$.ajax({
+		type : 'GET',
+		url : "/api/getNESTO",
+		headers : createAuthorizationTokenHeader(TOKEN_KEY),
+		dataType : "json",
+		success :displayAirline,
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.status);
+			alert(textStatus);
+			alert(errorThrown);
+		}
+	});
+	//getAirline();
+})
+
+
 function getAirline() {
 	$.ajax({
 		type : 'GET',
@@ -312,10 +330,7 @@ $(document).on('click', '#viewUserProfile_button', function(e){
 })
 
 
-$(document).on('click', '#airlineProfile', function(e){
-	e.preventDefault();
-	getAirline();
-})
+
 
 function viewUserProfile(user){
 		$('#main').empty();
