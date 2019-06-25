@@ -36,9 +36,10 @@ $(document).on('click', '#airlineProfile', function(e){
 function getAirline() {
 	$.ajax({
 		type : 'GET',
-		url : "/api/getNESTO",
+		url : "/getNESTO",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType : "json",
+		contentType: "application/json",
 		success :displayAirline,
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.status);
