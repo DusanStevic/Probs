@@ -43,7 +43,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		POSTGRES
+		<!-- POSTGRES -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -100,7 +100,7 @@
 
 		
 		
-		https://mvnrepository.com/artifact/mysql/mysql-connector-java
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
@@ -144,7 +144,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-		https://mvnrepository.com/artifact/org.sonarsource.sonarqube/sonar-plugin-api
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.sonarqube/sonar-plugin-api -->
 		<dependency>
 		    <groupId>org.sonarsource.sonarqube</groupId>
 		    <artifactId>sonar-plugin-api</artifactId>
@@ -162,13 +162,13 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                Optional URL to server. Default value is http://localhost:9000
+               <!--  Optional URL to server. Default value is http://localhost:9000 -->
                 <sonar.host.url> http://localhost:9000 </sonar.host.url>
-	Uncomment below few lines if you are using external databases(Oracle/DB2/Mysql)
-  <sonar.jdbc.url>your database url</sonar.jdbc.url>
+	<!-- Uncomment below few lines if you are using external databases(Oracle/DB2/Mysql) -->
+ <!--  <sonar.jdbc.url>your database url</sonar.jdbc.url>
 <sonar.jdbc.driver>your DB driver</sonar.jdbc.driver>
 <sonar.jdbc.username>DB username</sonar.jdbc.username>
-<sonar.jdbc.password>DB password</sonar.jdbc.password>                     
+<sonar.jdbc.password>DB password</sonar.jdbc.password>     -->                 
 
             </properties>
         </profile>
