@@ -4,17 +4,21 @@
 var TOKEN_KEY = 'jwtToken';
 //array labela koje se salju na server
 var lab=[];
-$(document).ready(function(e){
+/*$(document).ready(function(e){
 	checkFirstTime();
 	getAirline();
 })
+*/
+
+checkFirstTime();
+getAirline();
 
 function getAirline() {
 	var token = getJwtToken(TOKEN_KEY);
 	if (token) {
 		$.ajax({
 			type : 'GET',
-			url : "/api/getAirline",
+			url : " https://secret-ravine-36346.herokuapp.com/api/getAirline",
 			headers : createAuthorizationTokenHeader(TOKEN_KEY),
 			dataType : "json",
 			success : function(data) {
