@@ -22,13 +22,15 @@ $(document).on('click', '#airlineProfile', function(e){
 		dataType : "json",
 		success :displayAirline,
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.status);
-			alert(textStatus);
-			alert(errorThrown);
+			alert("AJAX ERROR: " + errorThrown);
 		}
 	});
 	//getAirline();
 })
+
+
+
+
 
 
 function getAirline() {
