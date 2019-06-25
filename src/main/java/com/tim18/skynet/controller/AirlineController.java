@@ -76,7 +76,7 @@ public class AirlineController {
 	private static SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	private static SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
 	
-	@GetMapping(value = "/api/getAirline", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/api/getAirline",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Airline> getAirline() {
 		AirlineAdmin user = (AirlineAdmin) this.userInfoService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		Airline airline = user.getAirline();
