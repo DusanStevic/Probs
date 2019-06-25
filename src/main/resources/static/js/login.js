@@ -21,7 +21,7 @@ $(document).on('submit', "#loginForm", function(e){
 
 	$.ajax({
 		dataType : 'json',
-		url : ' https://secret-ravine-36346.herokuapp.com/auth/login',
+		url : '/auth/login',
 		type : 'POST',
 		contentType : 'application/json',
 		data : inputToUser(username, password),

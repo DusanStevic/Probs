@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,7 @@ import com.tim18.skynet.model.Flight;
 import com.tim18.skynet.model.Hotel;
 import com.tim18.skynet.model.HotelAdmin;
 import com.tim18.skynet.model.Seat;
+import com.tim18.skynet.model.User;
 import com.tim18.skynet.service.AirlineAdminService;
 import com.tim18.skynet.service.impl.AirlineServiceImpl;
 import com.tim18.skynet.service.impl.CustomUserDetailsService;
@@ -463,6 +465,36 @@ public class AirlineController {
 		} 
 		return new ResponseEntity<>(airline, HttpStatus.FOUND);
 	}
+	
+	/*
+	FUNKCIJA ZA PREGLED PROFILA SVIH KORISNIKA
+	@GetMapping(value = "/api/viewUserProfile", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasAnyAuthority('ROLE_SYSTEM_ADMIN','ROLE_USER','ROLE_AIRLINE_ADMIN','ROLE_RENTACAR_ADMIN','ROLE_HOTEL_ADMIN')")
+	public ResponseEntity<User> viewUserProfile() {
+		System.out.println("STA JE STIGLO SA FRONTA1"+SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		User user = (User) userService.findOneByUsername(username);
+		if (user!=null) {
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		return null;
+	}
+	
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
