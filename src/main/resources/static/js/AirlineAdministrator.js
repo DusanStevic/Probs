@@ -19,8 +19,7 @@ $(document).on('click', '#airlineProfile', function(e){
 		type : 'GET',
 		url : "/getNESTO",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
-		dataType : "json",
-		contentType: "application/json",
+		dataType : 'json',
 		success :displayAirline,
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert("AJAX ERROR: " + errorThrown);
@@ -28,6 +27,27 @@ $(document).on('click', '#airlineProfile', function(e){
 	});
 	//getAirline();
 })
+
+
+/*PRIKAZ PROFILA REGISTERED USERA
+$(document).on('click', '#viewUserProfile_button', function(e){
+	e.preventDefault();
+	$.ajax({
+		type : 'GET',
+		url : "/api/viewUserProfile",
+		headers : createAuthorizationTokenHeader(TOKEN_KEY),
+		dataType: 'json',
+		success : viewUserProfile,		
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("AJAX ERROR: " + errorThrown);
+		}
+	});	
+})*/
+
+
+
+
+
 
 
 
