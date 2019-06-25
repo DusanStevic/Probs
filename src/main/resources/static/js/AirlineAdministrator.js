@@ -21,7 +21,7 @@ function getAirline() {
 			url : "/api/getAirline",
 			headers : createAuthorizationTokenHeader(TOKEN_KEY),
 			dataType : "json",
-			success :displayAirline(data),
+			success :displayAirline,
 			error : function(jqXHR, textStatus, errorThrown) {
 				alert(jqXHR.status);
 				alert(textStatus);
