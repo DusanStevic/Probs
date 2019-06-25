@@ -17,7 +17,7 @@ $(document).on('click', '#airlineProfile', function(e){
 	e.preventDefault();
 	$.ajax({
 		type : 'POST',
-		url : "/api/getNESTO",
+		url : "/api/getKompanija",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType : "json",
 		success :displayAirline,
