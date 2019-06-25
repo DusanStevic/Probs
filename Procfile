@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar Maven Dependencies/webapp-runner-9.0.20.1.jar --port $PORT target/*.war
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar target/gs-maven-*.jar
