@@ -16,7 +16,7 @@ getAirline();*/
 $(document).on('click', '#airlineProfile', function(e){
 	e.preventDefault();
 	$.ajax({
-		type : 'POST',
+		type : 'GET',
 		url : "/api/getKompanija",
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		dataType : "json",
