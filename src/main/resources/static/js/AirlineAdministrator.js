@@ -21,13 +21,7 @@ function getAirline() {
 			url : "/api/getAirline",
 			headers : createAuthorizationTokenHeader(TOKEN_KEY),
 			dataType : "json",
-			success : function(data) {
-				if (data == null) {
-					alert('Error while finding logged one!');
-				} else {
-					displayAirline(data);
-				}
-			},
+			success :displayAirline(data),
 			error : function(jqXHR, textStatus, errorThrown) {
 				alert(jqXHR.status);
 				alert(textStatus);
