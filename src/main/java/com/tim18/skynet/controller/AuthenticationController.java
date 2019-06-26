@@ -150,7 +150,7 @@ public class AuthenticationController {
 		
 		admin.setHotel(hotel);
 		admin.setUsername(user.getUsername());
-		admin.setId(null);
+		//admin.setId(null);
 		admin.setEmail(user.getEmail());
 		admin.setPassword(this.userService.encodePassword(user.getPassword()));
 		admin.setEnabled(true);
@@ -161,7 +161,8 @@ public class AuthenticationController {
 		authority.setName(UserRoleName.ROLE_HOTEL_ADMIN);
 		authorities.add(authority);
 		admin.setAuthorities(authorities);
-
+		userService.saveUser(admin);
+		
 		if (this.userService.saveUser(admin)) {
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		}
