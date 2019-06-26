@@ -9,12 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class AirlineAdmin extends User{
-
+private static final long serialVersionUID = -1831516149566167290L;
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "airline_id", referencedColumnName = "id")
