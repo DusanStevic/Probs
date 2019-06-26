@@ -239,6 +239,7 @@ $(document).on('click', "#blockAdmin", function(e){
 })
 
 $(document).on('submit', "#addAirlineAdminForm", function(e){
+	e.preventDefault();
 	var email = $('#email').val();
 	var name = $('#name').val();
 	var surname = $('#surname').val();
@@ -344,6 +345,7 @@ $(document).on('submit', "#addRACAdminForm", function(e){
 })
 
 $(document).on('submit', "#addAirlineForm", function(e){
+	e.preventDefault();
 	var name = $('#name').val();
 	var address = $('#adress').val();
 	var desc = $('#promo').val();
