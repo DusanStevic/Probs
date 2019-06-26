@@ -1,4 +1,4 @@
-var urlRoot18 = "http://localhost:8080/searchCarUnregistered";
+var urlRoot18 = "/searchCarUnregistered";
 
 var TOKEN_KEY = 'jwtToken';
 

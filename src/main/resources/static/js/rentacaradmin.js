@@ -1,21 +1,21 @@
-var urlRoot1 = "http://localhost:8080/api/myRAC";
-var urlRoot2 = "http://localhost:8080/api/saveRAC";
-var urlRoot3 = "http://localhost:8080/api/addCar";
-var urlRoot4 = "http://localhost:8080/api/getCars";
-var urlRoot5 = "http://localhost:8080/api/deleteCar";
-var urlRoot6 = "http://localhost:8080/api/findCar";
-var urlRoot7 = "http://localhost:8080/api/saveEditedCar";
-var urlRootCreateBranch="http://localhost:8080/api/createBranch";
-var urlRootShowBranches = "http://localhost:8080/api/getBranches";
-var urlRootDeleteBranch= "http://localhost:8080/api/deleteBranch";
-var urlRootSaveEditedBranch="http://localhost:8080/api/saveEditedBranch";
-var urlRootFindBranch = "http://localhost:8080/api/findBranch";
-var urlRootPutCarOnFastRes="http://localhost:8080/api/putCarOnFastRes";
-var urlRootFindSuitCarsFast =  "http://localhost:8080/api/findSuitCarsFast";
-var urlRootReportRentacarAttendance="http://localhost:8080/api/reportRentacarAttendance";
-var urlRootFindRentacarAmount="http://localhost:8080/api/findRentacarAmount";
-var showCarsOnFastRes="http://localhost:8080/showCarsOnFastRes";
-var urlRootDeleteCarOnFast="http://localhost:8080/removeCarOnFastRes";
+var urlRoot1 = "/api/myRAC";
+var urlRoot2 = "/api/saveRAC";
+var urlRoot3 = "/api/addCar";
+var urlRoot4 = "/api/getCars";
+var urlRoot5 = "/api/deleteCar";
+var urlRoot6 = "/api/findCar";
+var urlRoot7 = "/api/saveEditedCar";
+var urlRootCreateBranch="/api/createBranch";
+var urlRootShowBranches = "/api/getBranches";
+var urlRootDeleteBranch= "/api/deleteBranch";
+var urlRootSaveEditedBranch="/api/saveEditedBranch";
+var urlRootFindBranch = "/api/findBranch";
+var urlRootPutCarOnFastRes="/api/putCarOnFastRes";
+var urlRootFindSuitCarsFast =  "/api/findSuitCarsFast";
+var urlRootReportRentacarAttendance="/api/reportRentacarAttendance";
+var urlRootFindRentacarAmount="/api/findRentacarAmount";
+var showCarsOnFastRes="/showCarsOnFastRes";
+var urlRootDeleteCarOnFast="/removeCarOnFastRes";
 
 
 var TOKEN_KEY = 'jwtToken';
@@ -354,7 +354,7 @@ function editCar(carId) {
 
 			}
 
-			urlRoot6 = "http://localhost:8080/findCar";
+			urlRoot6 = "/findCar";
 			showCars("forEdit");
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -451,7 +451,7 @@ function deleteCar(carId) {
 				showMessage('Car successfully deleted.',"success");
 			}
 
-			urlRoot5 = "http://localhost:8080/deleteCar";
+			urlRoot5 = "/deleteCar";
 			showCars("forDelete");
 
 		},
