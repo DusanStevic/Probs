@@ -373,7 +373,7 @@ function viewUserProfile(user){
 
 /*PRIKAZ PROFILA REGISTERED USERA*/
 $(document).on('click', '#viewUserProfile_button', function(e){
-	e.preventDefault();
+
 	$.ajax({
 		type : 'GET',
 		url : "/api/viewUserProfile",
@@ -381,7 +381,16 @@ $(document).on('click', '#viewUserProfile_button', function(e){
 		dataType: 'json',
 		success : viewUserProfile,		
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("AJAX ERROR: " + errorThrown);
+			$.bootstrapGrowl("An error occurred while trying to view users profile !", {
+				  ele: 'body', // which element to append to
+				  type: 'danger', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If true then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
 		}
 	});	
 })
