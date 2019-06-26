@@ -457,7 +457,18 @@ $(document).on('submit', '#dodajDestForma', function(e){
 		dataType : 'json',
 		data: formToJSON_dest(name, coordinates,  description),
 		success : function(data){
-			alert("Successfully added destination.");
+			$.bootstrapGrowl("Destination has been successfully added!", {
+				  ele: 'body', // which element to append to
+				  type: 'success', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If false then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+			$('#main').empty();
+			
 			/*if (data != null){
 				if (file == undefined){
 					$('.main').empty();
