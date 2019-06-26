@@ -1,3 +1,6 @@
+var TOKEN_KEY = 'jwtToken';
+
+
 $(document).on('click', "#airline", function(e){
 	localStorage.setItem("page", "addAirline");
 })
@@ -258,6 +261,7 @@ $(document).on('submit', "#addAirlineAdminForm", function(e){
 	$.ajax({
         type: 'POST',
         url: '/auth/addAirlineAdmin',
+        headers : createAuthorizationTokenHeader(TOKEN_KEY),
         contentType: 'application/json',
 		dataType : 'json',
         data:inputToAdmin(email, name, surname, username, password, company),
