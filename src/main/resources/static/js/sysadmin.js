@@ -293,6 +293,7 @@ $(document).on('submit', "#addAirlineAdminForm", function(e){
 })
 
 $(document).on('submit', "#addHotelAdminForm", function(e){
+	e.preventDefault();
 	var email = $('#email').val();
 	var name = $('#name').val();
 	var surname = $('#surname').val();
@@ -311,6 +312,7 @@ $(document).on('submit', "#addHotelAdminForm", function(e){
 	$.ajax({
         type: 'POST',
         url: '/auth/addHotelAdmin',
+        headers : createAuthorizationTokenHeader(TOKEN_KEY),
         contentType: 'application/json',
         data:inputToAdmin(email, name, surname, username, password, company),
         success: function(data){
@@ -387,6 +389,7 @@ $(document).on('submit', "#addRACForm", function(e){
 })
 
 $(document).on('submit', "#addHotelForm", function(e){
+	e.preventDefault();
 	var name = $('#name').val();
 	var address = $('#adress').val();
 	var desc = $('#promo').val();
@@ -394,6 +397,7 @@ $(document).on('submit', "#addHotelForm", function(e){
 	$.ajax({
         type: 'POST',
         url: '/api/hotel',
+        headers : createAuthorizationTokenHeader(TOKEN_KEY),
         contentType: 'application/json',
         data:inputToCompany(name, address, desc, image),
         success: function(data){
