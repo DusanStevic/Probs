@@ -67,7 +67,7 @@ public class AuthenticationController {
 	@Autowired
 	private RentACarService racService;
 	
-	@PostMapping(value = "auth/addAirlineAdmin")
+	@PostMapping(value = "/auth/addAirlineAdmin")
 	public ResponseEntity<?> registerAirlineAdmin(@RequestBody UserDTO user) {
 		System.out.println("Adding airline admin...");
 		if (this.userService.usernameTaken(user.getUsername())) {
