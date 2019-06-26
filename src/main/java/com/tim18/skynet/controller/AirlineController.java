@@ -18,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +42,6 @@ import com.tim18.skynet.model.Flight;
 import com.tim18.skynet.model.Hotel;
 import com.tim18.skynet.model.HotelAdmin;
 import com.tim18.skynet.model.Seat;
-import com.tim18.skynet.model.User;
 import com.tim18.skynet.service.AirlineAdminService;
 import com.tim18.skynet.service.impl.AirlineServiceImpl;
 import com.tim18.skynet.service.impl.CustomUserDetailsService;
@@ -78,42 +76,16 @@ public class AirlineController {
 	private static SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	private static SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy. HH:mm");
 	
-	
-	
-	
-	
-	
-	
-	/*@RequestMapping(value = "/api/addDestination", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
-	public ResponseEntity<Destination>addDestination(@RequestBody DestinationBean destInfo) {
-		System.out.println("Uleteo sam u dodavanje destinacije.");
-		AirlineAdmin airlineAdmin = (AirlineAdmin) this.userInfoService
-				.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		Airline a = airlineAdmin.getAirline();
-		if (a == null) {
-			System.out.println("Flight admin doesnt't have flight company.");
+	@GetMapping(value = "/api/getAirline", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Airline> getAirline() {
+		AirlineAdmin user = (AirlineAdmin) this.userInfoService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		Airline airline = user.getAirline();
+		if (airline != null) {
+			return new ResponseEntity<>(airline, HttpStatus.OK);
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			
 		}
-		Destination newDestination = new Destination(destInfo.getName(), destInfo.getDescription(),
-				destInfo.getCoordinates());
-		destinationService.save(newDestination);
-		a.getDestinations().add(newDestination);
-		// update flight company
-		airlineService.save(a);
-		//return newDestination;
-		return new ResponseEntity<>(newDestination, HttpStatus.CREATED);
-		
-		
 	}
-	*/
-	
-	
-	
-	
-	
-	
 	
 	
 	//Method for adding new flight
@@ -232,9 +204,6 @@ public class AirlineController {
 
 			
 		}
-		
-		
-		
 		
 		
 		@RequestMapping(value = "/api/getFlights/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -453,70 +422,6 @@ public class AirlineController {
 		
 		
 	}
-	
-	@RequestMapping(value = "/getNESTO",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
-	public ResponseEntity<Airline> getAirline() {
-		AirlineAdmin user = (AirlineAdmin) this.userInfoService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		Airline airline = user.getAirline();
-		if (airline == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			
-		} 
-		return new ResponseEntity<>(airline, HttpStatus.FOUND);
-	}
-	
-	
-	@RequestMapping(value = "/api/getKompanija", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
-	// Method for adding new destination on which flight company operates
-	public ResponseEntity<Airline>getKompanija() {
-		System.out.println("Uleteo sam u dodavanje destinacije.");
-		AirlineAdmin airlineAdmin = (AirlineAdmin) this.userInfoService
-				.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		Airline a = airlineAdmin.getAirline();
-		if (a == null) {
-			System.out.println("Flight admin doesnt't have flight company.");
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			
-		}
-		
-		return new ResponseEntity<>(a, HttpStatus.OK);
-		
-		
-	}
-	
-	
-	
-	
-	
-	/*
-	FUNKCIJA ZA PREGLED PROFILA SVIH KORISNIKA
-	@GetMapping(value = "/api/viewUserProfile", produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAnyAuthority('ROLE_SYSTEM_ADMIN','ROLE_USER','ROLE_AIRLINE_ADMIN','ROLE_RENTACAR_ADMIN','ROLE_HOTEL_ADMIN')")
-	public ResponseEntity<User> viewUserProfile() {
-		System.out.println("STA JE STIGLO SA FRONTA1"+SecurityContextHolder.getContext().getAuthentication().getName());
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String username = authentication.getName();
-		User user = (User) userService.findOneByUsername(username);
-		if (user!=null) {
-			return new ResponseEntity<>(user, HttpStatus.OK);
-		}
-		return null;
-	}
-	
-	
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

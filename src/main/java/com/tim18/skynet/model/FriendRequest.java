@@ -16,11 +16,6 @@ import com.tim18.skynet.dto.FriendRequestDTO;
 @Entity
 @Table(name = "friendRequest")
 public class FriendRequest {
-	
-	
-	
-	
-	
 	@Id
 	@GeneratedValue
 	private Long id;
