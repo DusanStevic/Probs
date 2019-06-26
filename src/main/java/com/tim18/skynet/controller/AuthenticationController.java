@@ -100,7 +100,7 @@ public class AuthenticationController {
 		return new ResponseEntity<>(false, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "auth/addHotelAdmin")
+	@PostMapping(value = "/auth/addHotelAdmin")
 	public ResponseEntity<?> registerHotelAdmin(@RequestBody UserDTO user) {
 		System.out.println("Adding hotel admin...");
 		if (this.userService.usernameTaken(user.getUsername())) {
@@ -132,7 +132,7 @@ public class AuthenticationController {
 		return new ResponseEntity<>(false, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "auth/addRACAdmin")
+	@PostMapping(value = "/auth/addRACAdmin")
 	public ResponseEntity<?> registerRentacarAdmin(@RequestBody UserDTO user) {
 		System.out.println("Adding rac admin...");
 		if (this.userService.usernameTaken(user.getUsername())) {
