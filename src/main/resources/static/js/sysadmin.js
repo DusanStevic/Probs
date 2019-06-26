@@ -314,6 +314,7 @@ $(document).on('submit', "#addHotelAdminForm", function(e){
         url: '/auth/addHotelAdmin',
         headers : createAuthorizationTokenHeader(TOKEN_KEY),
         contentType: 'application/json',
+        dataType : 'json',
         data:inputToAdmin(email, name, surname, username, password, company),
         success: function(data){
             var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
