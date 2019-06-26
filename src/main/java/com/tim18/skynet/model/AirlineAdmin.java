@@ -32,7 +32,5 @@ public class AirlineAdmin extends User{
 		this.airlineAdmin = airline;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 }
