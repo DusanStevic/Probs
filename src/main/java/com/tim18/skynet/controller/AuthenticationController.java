@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -22,14 +24,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.tim18.skynet.dto.AdminDTO;
+import com.tim18.skynet.dto.DestinationBean;
 import com.tim18.skynet.dto.UserDTO;
 import com.tim18.skynet.model.Airline;
 import com.tim18.skynet.model.AirlineAdmin;
 import com.tim18.skynet.model.Authority;
+import com.tim18.skynet.model.Destination;
 import com.tim18.skynet.model.Hotel;
 import com.tim18.skynet.model.HotelAdmin;
 import com.tim18.skynet.model.RACAdmin;
@@ -67,7 +73,36 @@ public class AuthenticationController {
 	@Autowired
 	private RentACarService racService;
 	
-	@PostMapping(value = "/auth/addAirlineAdmin")
+	
+	/*@RequestMapping(value = "/api/addDestination", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasAuthority('ROLE_AIRLINE_ADMIN')")
+	// Method for adding new destination on which flight company operates
+	public ResponseEntity<Destination>addDestination(@RequestBody DestinationBean destInfo) {
+		System.out.println("Uleteo sam u dodavanje destinacije.");
+		AirlineAdmin airlineAdmin = (AirlineAdmin) this.userInfoService
+				.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		Airline a = airlineAdmin.getAirline();
+		if (a == null) {
+			System.out.println("Flight admin doesnt't have flight company.");
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			
+		}
+		Destination newDestination = new Destination(destInfo.getName(), destInfo.getDescription(),
+				destInfo.getCoordinates());
+		destinationService.save(newDestination);
+		a.getDestinations().add(newDestination);
+		// update flight company
+		airlineService.save(a);
+		//return newDestination;
+		return new ResponseEntity<>(newDestination, HttpStatus.CREATED);
+		
+		
+	}*/
+	
+	
+	
+	@RequestMapping(value = "/auth/addAirlineAdmin", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasAuthority('ROLE_SYSTEM_ADMIN')")
 	public ResponseEntity<AirlineAdmin> registerAirlineAdmin(@RequestBody UserDTO user) {
 		System.out.println("Adding airline admin...");
 		if (this.userService.usernameTaken(user.getUsername())) {
