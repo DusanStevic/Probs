@@ -76,7 +76,7 @@ public class AuthenticationController {
 
 		AirlineAdmin admin = new AirlineAdmin();
 		admin.setUsername(user.getUsername());
-		admin.setId(null);
+		
 		admin.setEmail(user.getEmail());
 		admin.setPassword(this.userService.encodePassword(user.getPassword()));
 		admin.setEnabled(true);
