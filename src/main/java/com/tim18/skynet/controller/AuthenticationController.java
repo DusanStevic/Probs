@@ -68,7 +68,7 @@ public class AuthenticationController {
 	private RentACarService racService;
 	
 	@PostMapping(value = "/auth/addAirlineAdmin")
-	public ResponseEntity<?> registerAirlineAdmin(@RequestBody UserDTO user) {
+	public ResponseEntity<AirlineAdmin> registerAirlineAdmin(@RequestBody UserDTO user) {
 		System.out.println("Adding airline admin...");
 		if (this.userService.usernameTaken(user.getUsername())) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -93,11 +93,12 @@ public class AuthenticationController {
 		
 		Airline airline = airlineService.findOne(Long.parseLong(user.getAdminId()));
 		admin.setAirline(airline);
-
-		if (this.userService.saveUser(admin)) {
+		userService.saveUser(admin);
+		/*if (this.userService.saveUser(admin)) {
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(false, HttpStatus.OK);
+		return new ResponseEntity<>(false, HttpStatus.OK);*/
+		return new ResponseEntity<>(admin, HttpStatus.CREATED);
 	}
 	
 	@PostMapping(value = "/auth/addHotelAdmin")
