@@ -9,8 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class HotelAdmin extends User{
-	private static final long serialVersionUID = -1831516149566167290L;
+	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hotel_id", referencedColumnName = "id")
