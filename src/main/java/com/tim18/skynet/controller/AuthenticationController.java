@@ -192,7 +192,7 @@ public class AuthenticationController {
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "auth/login")
+	@PostMapping(value = "/auth/login")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, HttpServletResponse response) throws AuthenticationException, IOException {
 		final Authentication authentication;
 		try {
@@ -222,7 +222,7 @@ public class AuthenticationController {
 		return new ResponseEntity<>(new UserTokenState(jwt, expiresIn, userType), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "auth/confirmRegistration/{id}")
+	@GetMapping(value = "/auth/confirmRegistration/{id}")
 	public RedirectView confirmRegistration(@PathVariable Long id) {
 		User user = (User) userService.loadUserById(id);
 		if (user != null) {
