@@ -34,8 +34,7 @@ public class User implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", unique=true, nullable=false)
+	@GeneratedValue
 	private Long id;
 	@Column(nullable = false)
 	private String name;
