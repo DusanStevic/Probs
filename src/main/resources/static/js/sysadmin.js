@@ -258,6 +258,7 @@ $(document).on('submit', "#addAirlineAdminForm", function(e){
         type: 'POST',
         url: '/auth/addAirlineAdmin',
         contentType: 'application/json',
+		dataType : 'json',
         data:inputToAdmin(email, name, surname, username, password, company),
         success: function(data){
             var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
