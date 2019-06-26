@@ -508,7 +508,7 @@ public class AirlineController {
 	
 	
 	
-	@RequestMapping( value="api/airline",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes= MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping( value="/api/airline",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes= MediaType.APPLICATION_JSON_VALUE)
 	public Airline createAirline(@Valid @RequestBody Airline airline) {
 		return airlineService.save(airline);
 	}
