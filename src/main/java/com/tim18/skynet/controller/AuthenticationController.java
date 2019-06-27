@@ -1,6 +1,6 @@
 package com.tim18.skynet.controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +30,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.tim18.skynet.dto.AdminDTO;
-import com.tim18.skynet.dto.DestinationBean;
 import com.tim18.skynet.dto.UserDTO;
 import com.tim18.skynet.model.Airline;
 import com.tim18.skynet.model.AirlineAdmin;
 import com.tim18.skynet.model.Authority;
-import com.tim18.skynet.model.Destination;
 import com.tim18.skynet.model.Hotel;
 import com.tim18.skynet.model.HotelAdmin;
 import com.tim18.skynet.model.RACAdmin;
