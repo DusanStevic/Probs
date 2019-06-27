@@ -319,11 +319,13 @@ $(document).on('submit', "#addHotelAdminForm", function(e){
         success: function(data){
             var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
             alert("Admin successfully added!");
+            
         }
     })
 })
 
 $(document).on('submit', "#addRACAdminForm", function(e){
+	e.preventDefault();
 	var email = $('#email').val();
 	var name = $('#name').val();
 	var surname = $('#surname').val();
@@ -364,15 +366,39 @@ $(document).on('submit', "#addAirlineForm", function(e){
 	$.ajax({
         type: 'POST',
         url: '/api/airline',
+        headers : createAuthorizationTokenHeader(TOKEN_KEY),
         contentType: 'application/json',
         data:inputToCompany(name, address, desc, image),
         success: function(data){
             alert("Airline successfully added!");
-        }
-    })
+            $.bootstrapGrowl("Airline has been successfully added!", {
+				  ele: 'body', // which element to append to
+				  type: 'success', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If false then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$.bootstrapGrowl("An error occurred while trying to add airline !", {
+				  ele: 'body', // which element to append to
+				  type: 'danger', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If true then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+		}
+    });
 })
 
 $(document).on('submit', "#addRACForm", function(e){
+	e.preventDefault();
 	var name = $('#name').val();
 	var address = $('#adress').val();
 	var desc = $('#promo').val();
@@ -380,13 +406,34 @@ $(document).on('submit', "#addRACForm", function(e){
 	$.ajax({
         type: 'POST',
         url: '/api/rac',
+        headers : createAuthorizationTokenHeader(TOKEN_KEY),
         contentType: 'application/json',
         data:inputToCompany(name, address, desc, image),
         success: function(data){
-            var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
-            alert("Reant-A-Car service successfully added!");
-        }
-    })
+            $.bootstrapGrowl("Rent a car has been successfully added!", {
+				  ele: 'body', // which element to append to
+				  type: 'success', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If false then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$.bootstrapGrowl("An error occurred while trying to add rent a car !", {
+				  ele: 'body', // which element to append to
+				  type: 'danger', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If true then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+		}
+    });
 })
 
 $(document).on('submit', "#addHotelForm", function(e){
@@ -402,10 +449,30 @@ $(document).on('submit', "#addHotelForm", function(e){
         contentType: 'application/json',
         data:inputToCompany(name, address, desc, image),
         success: function(data){
-            var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
-            alert("Airline successfully added!");
-        }
-    })
+            $.bootstrapGrowl("Hotel has been successfully added!", {
+				  ele: 'body', // which element to append to
+				  type: 'success', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If false then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$.bootstrapGrowl("An error occurred while trying to add hotel !", {
+				  ele: 'body', // which element to append to
+				  type: 'danger', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If true then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+		}
+    });
 })
 
 

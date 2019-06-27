@@ -14,15 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Airline implements Serializable{
+public class Airline {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id", unique=true, nullable=false)
 	private Long id;
 	@Column(nullable = false)
