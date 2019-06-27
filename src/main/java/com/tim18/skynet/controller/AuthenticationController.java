@@ -99,9 +99,8 @@ public class AuthenticationController {
 	
 	
 	
-	@RequestMapping(value = "/auth/addAirlineAdmin", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAuthority('ROLE_SYSTEM_ADMIN')")
-	public ResponseEntity<AirlineAdmin> registerAirlineAdmin(@RequestBody UserDTO user) {
+	@PostMapping(value = "/auth/addAirlineAdmin")
+	public ResponseEntity<?> registerAirlineAdmin(@RequestBody UserDTO user) {
 		System.out.println("Adding airline admin...");
 		if (this.userService.usernameTaken(user.getUsername())) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -126,13 +125,16 @@ public class AuthenticationController {
 		
 		Airline airline = airlineService.findOne(Long.parseLong(user.getAdminId()));
 		admin.setAirline(airline);
-		userService.saveUser(admin);
-		/*if (this.userService.saveUser(admin)) {
+		
+		if (this.userService.saveUser(admin)) {
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(false, HttpStatus.OK);*/
-		return new ResponseEntity<>(admin, HttpStatus.CREATED);
+		return new ResponseEntity<>(false, HttpStatus.OK);
+		
 	}
+	
+	
+	
 	
 	@PostMapping(value = "/auth/addHotelAdmin")
 	public ResponseEntity<?> registerHotelAdmin(@RequestBody UserDTO user) {
@@ -148,7 +150,7 @@ public class AuthenticationController {
 		
 		admin.setHotel(hotel);
 		admin.setUsername(user.getUsername());
-		//admin.setId(null);
+		admin.setId(null);
 		admin.setEmail(user.getEmail());
 		admin.setPassword(this.userService.encodePassword(user.getPassword()));
 		admin.setEnabled(true);
@@ -159,8 +161,6 @@ public class AuthenticationController {
 		authority.setName(UserRoleName.ROLE_HOTEL_ADMIN);
 		authorities.add(authority);
 		admin.setAuthorities(authorities);
-		userService.saveUser(admin);
-		
 		if (this.userService.saveUser(admin)) {
 			return new ResponseEntity<>(true, HttpStatus.OK);
 		}
