@@ -761,12 +761,12 @@ $(document).on('click','#edit',function(e){
     }
 })
 
-$(document).on('submit','#editHotelForm',function(){
+$(document).on('submit','#editHotelForm',function(e){
+	e.preventDefault();
 	var token = getJwtToken(TOKEN_KEY);
 	var name = $('#hotelName').val();
 	var adress = $('#hotelAdress').val();
 	var desc = $('#hotelDesc').val();
-	var image = $('#hotelImg').val();
 	if(name == "" || adress == "" || desc == ""){
 		alert("All fields must be filled!");
 	}
@@ -776,7 +776,7 @@ $(document).on('submit','#editHotelForm',function(){
 		headers : createAuthorizationTokenHeader(TOKEN_KEY),
 		contentType:'application/json',
 		dataType:'json',
-		data:inputToCompany(name, adress, desc, image),
+		data:inputToCompany(name, adress, desc, "a"),
 		success:function(data){
 			alert("Hotel info successfully edited!");
 			location.reload();

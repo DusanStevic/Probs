@@ -60,6 +60,7 @@ public class HotelController {
 	}
 	@RequestMapping(value = "/api/editHotel", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Hotel> editHotel(@RequestBody CompanyDTO dto) {
+		System.out.println("Usao sam");
 		HotelAdmin user = (HotelAdmin) this.userInfoService.loadUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		Hotel hotel = user.getHotel();
 		if(dto.getAdress().equals("") == false){
@@ -73,7 +74,7 @@ public class HotelController {
 		}
 		Hotel h = null;
 		try {
-			h = hotelService.save(h);
+			h = hotelService.save(hotel);
 		} catch (JpaSystemException e) {
 		}
 		

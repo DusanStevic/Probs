@@ -955,7 +955,7 @@ function prikazFastSeatReservations(data){
 
 	$.each(list, function(index, fastSeatReservation){
 		var tr1 = $('<tr></tr>');
-		tr1.append('<td><h2>'+fastSeatReservation.startDestination+"-"+fastSeatReservation.flight+'</h2></td><td></td>');
+		tr1.append('<td><h2>'+fastSeatReservation.startDestination+"-"+fastSeatReservation.endDestination+'</h2></td><td></td>');
 		var tr2 = $('<tr></tr>');
 		var tr3 = $('<tr></tr>');
 		tr2.append('<td><p>'+"Departure:"+fastSeatReservation.startDate+'</p></td>'+'<td align="right"><h3>Coordinates: '+fastSeatReservation.startDate+'</h3></td>');
