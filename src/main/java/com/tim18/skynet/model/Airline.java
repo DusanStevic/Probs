@@ -1,15 +1,13 @@
 package com.tim18.skynet.model;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column; 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -22,8 +20,7 @@ public class Airline {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id", unique=true, nullable=false)
+	@GeneratedValue
 	private Long id;
 	@Column(nullable = false)
 	private String name;

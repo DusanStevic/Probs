@@ -317,11 +317,32 @@ $(document).on('submit', "#addHotelAdminForm", function(e){
         dataType : 'json',
         data:inputToAdmin(email, name, surname, username, password, company),
         success: function(data){
-            var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
-            alert("Admin successfully added!");
+        	$.bootstrapGrowl("Hotel admin has been successfully added!", {
+				  ele: 'body', // which element to append to
+				  type: 'success', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If false then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
             
-        }
-    })
+        },
+        
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$.bootstrapGrowl("An error occurred while trying to add hotel admin!", {
+				  ele: 'body', // which element to append to
+				  type: 'danger', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If true then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+		}
+    });
 })
 
 $(document).on('submit', "#addRACAdminForm", function(e){
@@ -347,10 +368,30 @@ $(document).on('submit', "#addRACAdminForm", function(e){
         contentType: 'application/json',
         data:inputToAdmin(email, name, surname, username, password, company),
         success: function(data){
-            var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
-            alert("Admin successfully added!");
-        }
-    })
+        	$.bootstrapGrowl("Rent a car admin has been successfully added!", {
+				  ele: 'body', // which element to append to
+				  type: 'success', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If false then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+			$.bootstrapGrowl("An error occurred while trying to add rent a car admin!", {
+				  ele: 'body', // which element to append to
+				  type: 'danger', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If true then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
+		}
+    });
 })
 
 $(document).on('submit', "#addAirlineForm", function(e){
@@ -370,7 +411,6 @@ $(document).on('submit', "#addAirlineForm", function(e){
         contentType: 'application/json',
         data:inputToCompany(name, address, desc, image),
         success: function(data){
-            alert("Airline successfully added!");
             $.bootstrapGrowl("Airline has been successfully added!", {
 				  ele: 'body', // which element to append to
 				  type: 'success', // (null, 'info', 'danger', 'success')
