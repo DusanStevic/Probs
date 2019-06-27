@@ -812,18 +812,29 @@ $(document).on('submit', '.dodajNoviLet', function(e){
 		data: formToJSON_let(startDestination, endDestination,  economicPrice, businessPrice,firstClassPrice, flightDuration, flightLength, economicCapacity,  buisinesssCapacity, firstClassCapacity,startDate_str,endDate_str),
 		//data: formToJSON_let(startDestination, endDestination,  economicPrice, businessPrice,firstClassPrice, flightDuration, flightLength,seats,startDate_str,endDate_str),
 		success : function(data){
+			$.bootstrapGrowl("Flight has been successfully added!", {
+				  ele: 'body', // which element to append to
+				  type: 'success', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If false then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
 			$('#main').empty();
-        	$('#main').append('<p>Uspesno ste dodali novi let.</p>');
-			if (data ==  "uspesno"){
-				$('#main').empty();
-	        	$('#main').append('<p>Uspesno ste dodali novi let.</p>');
-			}
-			else{
-				alert(data);
-			}
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			alert("AJAX ERROR NECE DA MI DODA LET: " + errorThrown);
+			$.bootstrapGrowl("An error occurred while trying to add flight!", {
+				  ele: 'body', // which element to append to
+				  type: 'danger', // (null, 'info', 'danger', 'success')
+				  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+				  align: 'right', // ('left', 'right', or 'center')
+				  width: 'auto', // (integer, or 'auto')
+				  delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+				  allow_dismiss: false, // If true then will display a cross to close the popup.
+				  stackup_spacing: 10 // spacing between consecutively stacked growls.
+				});
 		}
 	});	
 	
