@@ -5,19 +5,14 @@ jdk: oraclejdk8
 before_install:
   - chmod +x mvnw
 
-
 addons:
   sonarcloud:
     organization: "dusanstevic"
-    token:
-      secure: "**************************" # encrypted value of your token
+    token: $SONAR_TOKEN
 
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - ./mvnw clean install -DskipTests=false -B
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-  
-
+  - ./mvnw sonar:sonar   -Dsonar.projectKey=DusanStevic_Probs   -Dsonar.organization=dusanstevic   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=$SONAR_TOKEN
 
 deploy:
   provider: heroku
