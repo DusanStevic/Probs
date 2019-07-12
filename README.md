@@ -2,4 +2,4 @@
 
 https://skynet-application.herokuapp.com/index.html
 
-https://travis-ci.org/DusanStevic/Probs.svg?branch=master
+[![Build Status](https://travis-ci.org/DusanStevic/Probs.svg?branch=master)](https://travis-ci.org/DusanStevic/Probs)
