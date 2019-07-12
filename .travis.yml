@@ -5,8 +5,14 @@ jdk: oraclejdk8
 before_install:
   - chmod +x mvnw
 
+addons:
+  sonarcloud:
+    organization: "dusanstevic"
+    token: $SONAR_TOKEN
+
 script:
   - ./mvnw clean install -DskipTests=false -B
+  - ./mvnw sonar:sonar   -Dsonar.projectKey=DusanStevic_Probs   -Dsonar.organization=dusanstevic   -Dsonar.host.url=https://sonarcloud.io   -Dsonar.login=$SONAR_TOKEN
 
 deploy:
   provider: heroku
